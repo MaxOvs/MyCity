@@ -6,7 +6,6 @@ dev:
     pass: jegerdansk
     check: true
     path:
-        local:  .
         remote: /var/www/
 
 stage:
