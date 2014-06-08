@@ -1,5 +1,5 @@
 dev:
-    scheme: ssh
+    scheme: sftp
     host: 88.184.102.144
     port: 22
     user: david
