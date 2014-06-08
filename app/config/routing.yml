@@ -1,0 +1,11 @@
+jy_accede_location:
+    resource: "@JyAccedeLocationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jy_accede_actu:
+    resource: "@JyAccedeActuBundle/Resources/config/routing.yml"
+    prefix:   /
+
+stikair_init:
+    resource: "@StikairInitBundle/Resources/config/routing.yml"
+    prefix:   /
