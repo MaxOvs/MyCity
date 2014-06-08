@@ -1,0 +1,32 @@
+dev:
+    scheme: ssh
+    host: 88.184.102.144
+    port: 22
+    user: david
+    pass: jegerdansk
+    check: true
+    path:
+        local:  .
+        remote: /var/www/
+
+stage:
+    scheme: ftp
+    host: ftp.my-stage-server.com
+    port: 21
+    user: user
+    pass: password
+    check: true
+    path:
+        local: release/
+        remote: public_html/
+
+live:
+    scheme: ftp
+    host: ftp.my-live-server.com
+    port: 21
+    user: user
+    pass: password
+    check: true
+    path:
+        local: release/
+        remote: public_html/
