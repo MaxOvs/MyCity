@@ -6,13 +6,14 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
 /**
  * This is the class that loads and manages your bundle configuration
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class StikairFormExtraExtension extends Extension
+class StikairFormExtraExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritDoc}
@@ -24,5 +25,20 @@ class StikairFormExtraExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        $container->setParameter('stikair_form_extra.ckeditor.config', $config['custom_config_path']);
+
     }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        $config=array(
+                'form' => array(
+                    'resources' => array('StikairFormExtraBundle:Form:fields.html.twig')
+                    )
+                );
+        $container->prependExtensionConfig("twig", $config);
+
+        return $container;
+    }
+
 }

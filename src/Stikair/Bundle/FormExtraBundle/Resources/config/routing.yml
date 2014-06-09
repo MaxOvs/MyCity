@@ -1,3 +1,0 @@
-stikair_form_extra_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: StikairFormExtraBundle:Default:index }

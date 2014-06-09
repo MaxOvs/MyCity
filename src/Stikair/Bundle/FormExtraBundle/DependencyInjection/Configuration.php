@@ -18,12 +18,23 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('stikair_form_extra');
+        $rootNode    = $treeBuilder->root('stikair_form_extra');
+
+        $rootNode
+                ->children()
+                    ->scalarNode("custom_config_path")
+                        ->defaultValue("config.js")
+                    ->end()
+                    ->booleanNode("inline")
+                        ->defaultFalse()
+                    ->end()
+                    //->arrayNode("config")
+                    ;
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
-
         return $treeBuilder;
     }
+
 }
