@@ -33,6 +33,7 @@ class AppKernel extends Kernel {
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
                 // ...,
             new Stikair\Bundle\InitBundle\StikairInitBundle(),
+            new Stikair\Bundle\FormExtraBundle\StikairFormExtraBundle(),
             new JyAccede\Bundle\ActuBundle\JyAccedeActuBundle(),
             new JyAccede\Bundle\LocationBundle\JyAccedeLocationBundle(),
         );
