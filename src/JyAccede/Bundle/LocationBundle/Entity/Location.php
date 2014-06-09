@@ -220,4 +220,8 @@ class Location
     {
         return $this->category_id;
     }
+
+    public function toString(){
+        return "";
+    }
 }
