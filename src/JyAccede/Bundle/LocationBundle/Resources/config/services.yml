@@ -2,6 +2,16 @@ parameters:
 #    jy_accede_location.example.class: JyAccede\Bundle\LocationBundle\Example
 
 services:
+  sonata.admin.location:
+          class: JyAccede\Bundle\ActuBundle\Admin\LocationAdmin.php
+          tags:
+              - { name: sonata.admin, manager_type: orm, group: "Content", label: "Lieux" }
+          arguments:
+              - ~
+              - JyAccede\Bundle\ActuBundle\Entity\Location
+              - ~
+          calls:
+              - [ setTranslationDomain, [LocationBundle]]
 #    jy_accede_location.example:
 #        class: %jy_accede_location.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
