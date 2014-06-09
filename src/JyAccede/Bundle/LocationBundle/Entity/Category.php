@@ -97,4 +97,8 @@ class Category
     {
         return $this->locations;
     }
+
+    public function __toString(){
+        return $this->name."";
+    }
 }
