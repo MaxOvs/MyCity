@@ -24,7 +24,7 @@ class LocationAdmin extends Admin
            ->add('latitude')
            ->add('longitude')
            ->add('mark')
-           ->add('disabled_access')
+           ->add('disabledAccess')
            ->add('category_id')
        ;
    }
@@ -34,7 +34,7 @@ class LocationAdmin extends Admin
    {
        $datagridMapper
            ->add('name')
-           ->add('disabled_access')
+           ->add('disabledAccess')
            ->add('category_id')
        ;
    }
@@ -45,7 +45,7 @@ class LocationAdmin extends Admin
        $listMapper
            ->addIdentifier('name')
            ->add('category_id')
-           ->add('disabled_access')
+           ->add('disabledAccess')
        ;
    }
 }
