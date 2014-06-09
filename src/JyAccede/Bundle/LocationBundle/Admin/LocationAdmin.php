@@ -6,7 +6,7 @@
  * Time: 22:52
  */
 
-namespace JyAccede\Bundle\ActuBundle\Admin;
+namespace JyAccede\Bundle\LocationBundle\Admin;
 
 
 use Sonata\AdminBundle\Admin\Admin;
