@@ -24,7 +24,7 @@ class LocationAdmin extends Admin
            ->add('latitude')
            ->add('longitude')
            ->add('mark')
-           ->add('diabled_access')
+           ->add('disabled_access')
            ->add('category_id')
        ;
    }
