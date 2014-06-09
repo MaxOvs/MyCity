@@ -21,7 +21,7 @@ class ActuAdmin extends Admin
     {
         $formMapper
             ->add('name', 'text', array('label' => 'Titre'))
-            ->add('description',"textarea",array("class"=>"ckeditor"))
+            ->add('description',"ckeditor")
             ->add("active")
         ;
     }
