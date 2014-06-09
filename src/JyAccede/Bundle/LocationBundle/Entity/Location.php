@@ -221,7 +221,7 @@ class Location
         return $this->category_id;
     }
 
-    public function toString(){
-        return "";
+    public function __toString(){
+        return $this->name."";
     }
 }
