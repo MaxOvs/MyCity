@@ -3,12 +3,12 @@ parameters:
 
 services:
   sonata.admin.location:
-          class: JyAccede\Bundle\ActuBundle\Admin\LocationAdmin.php
+          class: JyAccede\Bundle\LocationBundle\Admin\LocationAdmin.php
           tags:
               - { name: sonata.admin, manager_type: orm, group: "Content", label: "Lieux" }
           arguments:
               - ~
-              - JyAccede\Bundle\ActuBundle\Entity\Location
+              - JyAccede\Bundle\LocationBundle\Entity\Location
               - ~
           calls:
               - [ setTranslationDomain, [LocationBundle]]
