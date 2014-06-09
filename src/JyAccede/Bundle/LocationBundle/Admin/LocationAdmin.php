@@ -20,7 +20,12 @@ class LocationAdmin extends Admin
    protected function configureFormFields(FormMapper $formMapper)
    {
        $formMapper
-           ->add('title', 'text', array('label' => 'Post Title'))
+           ->add('name')
+           ->add('latitude')
+           ->add('longitude')
+           ->add('mark')
+           ->add('diabledAccess')
+           ->add('category_id')
        ;
    }
 
@@ -28,7 +33,9 @@ class LocationAdmin extends Admin
    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
    {
        $datagridMapper
-           ->add('title')
+           ->add('name')
+           ->add('disabledAccess')
+           ->add('category_id')
        ;
    }
 
@@ -36,7 +43,9 @@ class LocationAdmin extends Admin
    protected function configureListFields(ListMapper $listMapper)
    {
        $listMapper
-           ->addIdentifier('title')
+           ->addIdentifier('name')
+           ->add('category_id')
+           ->add('disabledAccess')
        ;
    }
 }

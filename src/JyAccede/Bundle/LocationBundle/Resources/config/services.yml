@@ -5,7 +5,7 @@ services:
   sonata.admin.location:
           class: JyAccede\Bundle\LocationBundle\Admin\LocationAdmin
           tags:
-              - { name: sonata.admin, manager_type: orm, group: "Content", label: "Lieux" }
+              - { name: sonata.admin, manager_type: orm, group: "Emplacements", label: "Lieux" }
           arguments:
               - ~
               - JyAccede\Bundle\LocationBundle\Entity\Location
