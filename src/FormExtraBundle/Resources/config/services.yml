@@ -1,0 +1,7 @@
+parameters:
+#    stikair_form_extra.example.class: Stikair\Bundle\FormExtraBundle\Example
+
+services:
+#    stikair_form_extra.example:
+#        class: %stikair_form_extra.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
