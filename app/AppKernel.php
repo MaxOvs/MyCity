@@ -36,6 +36,7 @@ class AppKernel extends Kernel {
             new Stikair\Bundle\FormExtraBundle\StikairFormExtraBundle(),
             new JyAccede\Bundle\ActuBundle\JyAccedeActuBundle(),
             new JyAccede\Bundle\LocationBundle\JyAccedeLocationBundle(),
+            new JyAccede\Bundle\APIBundle\JyAccedeAPIBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
