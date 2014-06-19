@@ -12,3 +12,13 @@ services:
                 - JyAccedeAPIBundle:CRUD
             calls:
                 - [ setTranslationDomain, [APIBundle]]
+  sonata.admin.lines:
+              class: JyAccede\Bundle\APIBundle\Admin\LinesAdmin
+              tags:
+                  - { name: sonata.admin, manager_type: orm, group: "Emplacements", label: "Lignes Canal TP" }
+              arguments:
+                  - ~
+                  - JyAccede\Bundle\APIBundle\Entity\Line
+                  - JyAccedeAPIBundle:CRUD
+              calls:
+                  - [ setTranslationDomain, [APIBundle]]

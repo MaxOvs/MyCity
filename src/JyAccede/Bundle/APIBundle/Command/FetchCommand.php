@@ -15,7 +15,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use JyAccede\Bundle\APIBundle\Tools\RESTClient;
 use JyAccede\Bundle\APIBundle\Entity\StopPoint;
-
+use JyAccede\Bundle\APIBundle\Entity\Line;
 
 class FetchCommand extends ContainerAwareCommand {
 
@@ -32,7 +32,8 @@ class FetchCommand extends ContainerAwareCommand {
         /* @var \Doctrine\Bundle\DoctrineBundle\Registry $doctrine */
         $em=$doctrine->getManager();
         $client=new RESTClient();
-        $json=$client->get("coverage/paris/".$object);
+        $json=$client->get("coverage/paris/".$object."/?count=1000000");
+
         if($json==null)
         {
             $output->write("Api Did not return anything");
@@ -41,6 +42,18 @@ class FetchCommand extends ContainerAwareCommand {
 
         switch($object)
         {
+            case "lines":
+                $datas=json_decode($json);
+                $objects=$datas->lines;
+                foreach($objects as $stopP)
+                {
+                    $stop=new Line();
+                    $stop->setIdCanalTp($stopP->id);
+                    $stop->setName($stopP->name);
+                    $em->persist($stop);
+                }
+                $em->flush();
+                break;
             case "stop_points":
                 $datas=json_decode($json);
                 $objects=$datas->stop_points;

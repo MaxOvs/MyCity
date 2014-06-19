@@ -90,6 +90,7 @@ namespace JyAccede\Bundle\APIBundle\Tools;
          * @return json
          */
         private function exec($method, $uri, $data = null) {
+            echo strtoupper($method)." sur ".$uri;
             /**
              * Error variables
              */
