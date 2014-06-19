@@ -37,6 +37,7 @@ class AppKernel extends Kernel {
             new JyAccede\Bundle\ActuBundle\JyAccedeActuBundle(),
             new JyAccede\Bundle\LocationBundle\JyAccedeLocationBundle(),
             new JyAccede\Bundle\APIBundle\JyAccedeAPIBundle(),
+            new JyAccede\Bundle\SearchBundle\JyAccedeSearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Justified Nav Template for Bootstrap</title>
+    <title>J'accède | Trouvez les endroits amménagés en quelques clics</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,13 +40,13 @@
         </ul>
     </div>
     {% endblock %}
-
+    {% block content %}
     {% block market %}
     <!-- Jumbotron -->
     <div class="jumbotron">
         <h1>Trouvez votre chemin aménagé en quelques clics.</h1>
         <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">C'est par ici !</a></p>
+        <p><a class="btn btn-lg btn-success" href="{{ path("jacc_search") }}" role="button">C'est par ici !</a></p>
     </div>
     {% endblock %}
 
@@ -71,7 +71,7 @@
         </div>
     </div>
     {% endblock %}
-
+    {% endblock %}
 
     <!-- Site footer -->
     {% block footer %}
@@ -85,6 +85,9 @@
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+<!-- Placed at the end of the document so the pages load faster-->
+{% block js %}
+
+{% endblock %}
 </body>
 </html>
