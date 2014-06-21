@@ -39,7 +39,7 @@ class FrontController extends Controller
     public function searchAction(Request $request)
     {
         $city=false;
-        $json="";
+        $json="{}";
         if($request->isMethod("POST"))
         {
             $city=$request->request->get("city");
