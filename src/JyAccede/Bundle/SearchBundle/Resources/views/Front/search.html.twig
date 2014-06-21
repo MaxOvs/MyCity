@@ -53,6 +53,9 @@
         var userLat,userLng;
         var userIsLocated=false;
         var map,markers;
+        var infowindow = new google.maps.InfoWindow({
+            content: "Loading ..."
+        });
 
         var villeSearch="{{ ville }}";
 
@@ -67,39 +70,6 @@
             });
         }
 
-        function askAPI()
-        {
-            theTime=new Date().getTime();
-            string_to_sign = "GET" + "\n" + "x-jispapi-timestamp:"+ theTime + "\n" + "/api/v2/places/search/";
-            hash=CryptoJS.HmacSHA1("test-jispapi-secret-access-key" , string_to_sign);
-            Signature = hash.toString(CryptoJS.enc.Base64);
-
-            var url="http://dev.jaccede.com/api/v2/places/search/";
-            var request=createCORSRequest("GET",url);
-
-            console.log(Signature);
-            console.log(theTime);
-
-            request.setRequestHeader("Authorization", "JISAPI test-jispapi-access-key-id:"+Signature);
-            request.setRequestHeader("x-jispapi-timestamp", theTime);
-
-            // Response handlers.
-            request.onload = function() {
-                var text = xhr.responseText;
-                var title = getTitle(text);
-                alert('Response from CORS request to ' + url + ': ' + title);
-            };
-
-            request.onerror = function() {
-                alert('Woops, there was an error making the request.');
-            };
-
-
-
-            request.send();
-
-        }
-
         function geoCode(){
             geocoder = new google.maps.Geocoder();
             geocoder.geocode( { 'address': villeSearch}, function(results, status) {
@@ -109,6 +79,7 @@
                     userIsLocated=false;
                     if(map){
                         map.setCenter(results[0].geometry.location);
+                        map.setZoom(15);
                     }
                 } else {
                     alert("Geocode was not successful for the following reason: " + status);
@@ -116,19 +87,47 @@
             });
         }
 
-        function loadMap(){
+        function loadMarkers(){
 
-            if(villeSearch){
-                askAPI();
-                geoCode();
+            var datas = {{ json|raw }};
+            var results=datas.results.items;
+            for(result in results)
+            {
+                var place=results[result];
+                console.debug(place);
+                if(place.latitude && place.longitude){
+                    var myLatlng = new google.maps.LatLng(place.latitude,place.longitude);
+
+                    var marker = new google.maps.Marker({
+                        position: myLatlng,
+                        map: map,
+                        title:place.name
+                    });
+
+                    var contentString=place.name+"<br/>"+place.address+"<br/>";
+                    if(place.telephone)
+                        contentString+=place.telephone+"<br/>";
+                    if(place.website)
+                        contentString+="<a href='"+place.website+"'>"+place.website+"</a>";
+
+                    contentString+="<br/>"+place.main_keyword;
+                    marker.html=contentString;
+
+                    google.maps.event.addListener(marker, 'click', function() {
+                        infowindow.setContent(this.html);
+                        infowindow.open(map,this);
+                    });
+                }
             }
+        }
+
+        function loadMap(){
 
             if(!userIsLocated){
                 //User didn't allow location, or it's not available. Paris is the default
                 userLat=48.8534100;
                 userLng=2.3488000;
             }
-
             var mapOptions = {
                 center: new google.maps.LatLng(userLat, userLng),
                 zoom: 8
@@ -136,6 +135,11 @@
 
             map = new google.maps.Map(document.getElementById("map"),
                     mapOptions);
+
+            if(villeSearch){
+                geoCode();
+                loadMarkers();
+            }
         }
 
         google.maps.event.addDomListener(window, 'load', loadMap);
