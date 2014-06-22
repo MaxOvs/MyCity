@@ -10,3 +10,4 @@
 /node_modules/
 /composer.lock
 .idea/
+dploy.yaml
